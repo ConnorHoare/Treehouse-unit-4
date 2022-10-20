@@ -20,15 +20,15 @@
     // Get the UL
     let phraseUL = document.getElementById('phrase').getElementsByTagName('UL')[0];
 
-    for (var i = 0; i < phrase.length; i++) {
+    for (var i = 0; i < this.phrase.length; i++) {
       let li = document.createElement("LI");
-      if (this.phrase === " ") {
-        li[i].classList.add("space");
+      if (this.phrase[i] === " ") {
+        li.classList.add("space");
       } else {
-        li[i].classList.add("hide");
-        li[i].classList.add("letter");
-        li[i].classList.add(`${this.phrase[i]}`);
-        phraseCharArr.push(li[i].innerText);
+        li.classList.add("hide");
+        li.classList.add("letter");
+        li.classList.add(`${this.phrase[i]}`);
+        this.phraseCharArr.push(li.innerText);
       }
       phraseUL.appendChild(li);
     }
