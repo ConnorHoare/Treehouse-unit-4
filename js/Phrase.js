@@ -5,9 +5,10 @@
  class Phrase {
    constructor(phrase) {
      this.phrase = phrase.toLowerCase();
+     this.phraseCharArr = [];
    }
 
-   let phraseCharArr = [];
+   
 
    addPhraseToDisplay() {
     //  Adds letter placeholders to the display when the game starts
@@ -33,7 +34,7 @@
     }
    }
 
-   let matchedLetterArr = [];
+   
 
    checkLetter(e) {
      // Checks to see if the letter selected by the player matches a letter in the phrase
@@ -41,11 +42,15 @@
      // Use if statement and includes method to check if the current buttons inner text matches the phrase.
      // const buttons = document.getElementById('keyrow').getElementsByTagName("BUTTON");
 
+     let matchedLetterArr = [];
+
      if (phrase.includes(e.target.value)) {
        matchedLetterArr.push(e.target.value)
      } else {
        console.log("Incorrect");
      }
+
+     return matchedLetterArr
 
    }
 
