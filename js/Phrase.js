@@ -22,12 +22,12 @@
 
     for (var i = 0; i < phrase.length; i++) {
       let li = document.createElement("LI");
-      if (li[i].innerText === " ") {
+      if (this.phrase === " ") {
         li[i].classList.add("space");
       } else {
         li[i].classList.add("hide");
         li[i].classList.add("letter");
-        li[i].classList.add(`${li[i].innerText}`);
+        li[i].classList.add(`${this.phrase[i]}`);
         phraseCharArr.push(li[i].innerText);
       }
       phraseUL.appendChild(li);
