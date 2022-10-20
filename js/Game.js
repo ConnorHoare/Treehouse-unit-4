@@ -16,7 +16,7 @@ class Game {
       // get random phrase and set to active phrase
       this.activePhrase = this.getRandomPhrase()
       // add phrase to board by calling addPhraseToDisplay() on activePhrase
-      this.activePhrase.addPhraseToDisplay()
+      new Phrase(this.activePhrase).addPhraseToDisplay()
     }
 
     getRandomPhrase() {
