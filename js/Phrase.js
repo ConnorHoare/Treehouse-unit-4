@@ -8,7 +8,7 @@
      this.phraseCharArr = [];
    }
 
-   
+
 
    addPhraseToDisplay() {
     //  Adds letter placeholders to the display when the game starts
@@ -30,11 +30,11 @@
         li[i].classList.add(`${li[i].innerText}`);
         phraseCharArr.push(li[i].innerText);
       }
-      phraseUL.append(li);
+      phraseUL.appendChild(li);
     }
    }
 
-   
+
 
    checkLetter(e) {
      // Checks to see if the letter selected by the player matches a letter in the phrase
