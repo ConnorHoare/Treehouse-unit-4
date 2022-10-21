@@ -25,8 +25,14 @@ class Game {
       return this.phrase[randomNum - 1];
     }
 
-    handleInteraction(e) {
-
+    // create function which takes input 
+    handleInteraction(selection) {
+      // if the selection input is not nill
+      if (selection != null) {
+        // disable the selection
+        selection.disabled = true;
+      }
+      
     }
 
     removeLife() {
