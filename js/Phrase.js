@@ -6,6 +6,8 @@
    constructor(phrase) {
      this.phrase = phrase.toLowerCase();
      this.phraseCharArr = [];
+     this.phraseUL = document.getElementById('phrase').getElementsByTagName('UL')[0];
+     this.matchedLetterArr = [];
    }
 
 
@@ -18,7 +20,7 @@
     //  If space then add className space
 
     // Get the UL
-    let phraseUL = document.getElementById('phrase').getElementsByTagName('UL')[0];
+
 
     for (var i = 0; i < this.phrase.length; i++) {
       let li = document.createElement("LI");
@@ -28,29 +30,37 @@
         li.classList.add("hide");
         li.classList.add("letter");
         li.classList.add(`${this.phrase[i]}`);
-        this.phraseCharArr.push(li.innerText);
+        this.phraseCharArr.push(this.phrase[i]);
+        console.log(this.phraseCharArr);
       }
-      phraseUL.appendChild(li);
+      this.phraseUL.appendChild(li);
     }
    }
 
 
 
-   checkLetter(e) {
+   checkLetter(letter) {
      // Checks to see if the letter selected by the player matches a letter in the phrase
      // Get the current selected buttons inner text
      // Use if statement and includes method to check if the current buttons inner text matches the phrase.
      // const buttons = document.getElementById('keyrow').getElementsByTagName("BUTTON");
 
-     let matchedLetterArr = [];
 
-     if (phrase.includes(e.target.value)) {
-       matchedLetterArr.push(e.target.value)
-     } else {
-       console.log("Incorrect");
+     for (var i = 0; i < this.phraseCharArr.length; i++) {
+       this.matchedLetterArr.push(this.phraseCharArr[i]);
      }
 
-     return matchedLetterArr
+     const letterText = letter.innerText;
+
+     if (this.phraseCharArr.includes(letterText)) {
+       letter.classList.add("chosen");
+       letter.classList.remove("wrong");
+     } else {
+       letter.classList.add("wrong");
+       letter.classList.remove("chosen")
+     }
+
+     return this.matchedLetterArr
 
    }
 
@@ -60,11 +70,11 @@
      // compare the phrase to the clicked buttons
      // if the buttons letter in included in the phrase -> change the class property of all li's who's innerText matches the buttons
 
-     const li = phraseUL.querySelectorAll('letter');
-     for ( var i = 0; i < li.length; i++) {
-       if(matchedLetterArr.includes(li[i].innerText)) {
-         li[i].classList.remove("hide");
-         li[i].classList.add("show");
+     const li = this.phraseUL.querySelectorAll('letter');
+     for ( var i = 0; i < this.phrase.length; i++) {
+       if(this.matchedLetterArr.includes(li[i].innerText)) {
+         li.classList.remove("hide");
+         li.classList.add("show");
        }
      }
    }

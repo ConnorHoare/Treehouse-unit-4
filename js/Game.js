@@ -25,14 +25,18 @@ class Game {
       return this.phrase[randomNum - 1];
     }
 
-    // create function which takes input 
+    // create function which takes input
     handleInteraction(selection) {
       // if the selection input is not nill
       if (selection != null) {
         // disable the selection
         selection.disabled = true;
       }
-      
+
+      this.activePhrase.checkLetter(selection)
+
+      this.activePhrase.showMatchedLetter()
+
     }
 
     removeLife() {
