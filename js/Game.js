@@ -34,8 +34,10 @@ class Game {
       }
 
       if (this.activePhrase.checkLetter(selection) === true) {
+        selection.classList.add("chosen");
         this.activePhrase.showMatchedLetter(selection)
       } else {
+        selection.classList.add("wrong");
         this.removeLife()
       }
 

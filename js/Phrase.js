@@ -54,15 +54,11 @@
      const letterText = letter.innerText;
 
      if (this.phraseCharArr.includes(letterText)) {
-       letter.classList.add("chosen");
-       letter.classList.remove("wrong");
+       return true
      } else {
-       letter.classList.add("wrong");
-       letter.classList.remove("chosen")
+      return false
+
      }
-
-     return true
-
    }
 
    showMatchedLetter(letter) {
@@ -71,8 +67,12 @@
      const li = this.phraseUL.querySelectorAll(`.letter.${letter.innerText}`);
      // const character = li.querySelectorAll("."+letter)
 
-         li.classList.remove("hide");
+     for (var i = 0; i < li.length; i++) {
+       li[i].classList.remove("hide");
 
-         li.classList.add("show");
+       li[i].classList.add("show");
+     }
+
+
        }
      }
