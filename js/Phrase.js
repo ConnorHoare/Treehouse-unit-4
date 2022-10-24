@@ -30,6 +30,7 @@
         li.classList.add("hide");
         li.classList.add("letter");
         li.classList.add(`${this.phrase[i]}`);
+        li.innerText = `${this.phrase[i]}`
         this.phraseCharArr.push(this.phrase[i]);
         console.log(this.phraseCharArr);
       }
@@ -70,11 +71,17 @@
      // compare the phrase to the clicked buttons
      // if the buttons letter in included in the phrase -> change the class property of all li's who's innerText matches the buttons
 
-     const li = this.phraseUL.querySelectorAll('letter');
+// get the li elements with class of letter
+     const li = this.phraseUL.querySelectorAll('.letter');
+     // loop length of current selected phrase
      for ( var i = 0; i < this.phrase.length; i++) {
-       if(this.matchedLetterArr.includes(li[i].innerText)) {
-         li.classList.remove("hide");
-         li.classList.add("show");
+       // if the matchedLetterArr contains the current li index innerText
+       if(this.matchedLetterArr.includes(li[i]).innerText) {
+         // remove  the hide class of the current index
+         li[i].classList.remove("hide");
+
+         // add the show class of the current index
+         li[i].classList.add("show");
        }
      }
    }
