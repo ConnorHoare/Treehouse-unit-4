@@ -5,7 +5,7 @@
 class Game {
     constructor() {
         this.missed = 0;
-        this.phrase = [new Phrase("On cloud nine"), new Phrase("Saved by the bell"), new Phrase("A country mile"), new Phrase("Heads will roll"), new Phrase("The devil's advocate")]
+        this.phrase = [new Phrase("On cloud nine"), new Phrase("Saved by the bell"), new Phrase("A country mile"), new Phrase("Heads will roll"), new Phrase("The devils advocate")]
         this.activePhrase = null;
     }
 
@@ -33,9 +33,14 @@ class Game {
         selection.disabled = true;
       }
 
-      this.activePhrase.checkLetter(selection)
+      if (this.activePhrase.checkLetter(selection) === true) {
+        this.activePhrase.showMatchedLetter(selection)
+      } else {
+        this.removeLife()
+      }
 
-      this.activePhrase.showMatchedLetter()
+
+
 
     }
 

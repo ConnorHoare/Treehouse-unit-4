@@ -61,28 +61,18 @@
        letter.classList.remove("chosen")
      }
 
-     return this.matchedLetterArr
+     return true
 
    }
 
-   showMatchedLetter() {
-     // Reveals the letters on the board that the player has matched.
+   showMatchedLetter(letter) {
 
-     // compare the phrase to the clicked buttons
-     // if the buttons letter in included in the phrase -> change the class property of all li's who's innerText matches the buttons
+     // get the li elements with class of letter
+     const li = this.phraseUL.querySelectorAll(`.letter.${letter.innerText}`);
+     // const character = li.querySelectorAll("."+letter)
 
-// get the li elements with class of letter
-     const li = this.phraseUL.querySelectorAll('.letter');
-     // loop length of current selected phrase
-     for ( var i = 0; i < this.phrase.length; i++) {
-       // if the matchedLetterArr contains the current li index innerText
-       if(this.matchedLetterArr.includes(li[i]).innerText) {
-         // remove  the hide class of the current index
-         li[i].classList.remove("hide");
+         li.classList.remove("hide");
 
-         // add the show class of the current index
-         li[i].classList.add("show");
+         li.classList.add("show");
        }
      }
-   }
- }
