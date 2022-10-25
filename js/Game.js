@@ -9,6 +9,22 @@ class Game {
         this.activePhrase = null;
     }
 
+    reset() {
+      this.activePhrase.phraseUL.innerHTML = ''
+      this.activePhrase = null;
+      const getButtons = document.getElementsByTagName('BUTTON');
+      for (var i = 0; i < getButtons.length; i++) {
+        getButtons[i].disabled = false
+        getButtons[i].classList.remove("chosen");
+        getButtons[i].classList.remove("wrong");
+      }
+      this.missed = 0;
+      const getImgs = document.getElementsByTagName('IMG');
+      for (var i = 0; i < getImgs.length; i++) {
+        getImgs[i].src = "images/liveHeart.png";
+      }
+
+    }
     startGame() {
       // hide start screen overlay
       const startOverlay = document.getElementById("overlay");
@@ -36,15 +52,14 @@ class Game {
       if (this.activePhrase.checkLetter(selection) === true) {
         selection.classList.add("chosen");
         this.activePhrase.showMatchedLetter(selection)
-        this.checkForWin()
+        if (this.checkForWin()) {
+          this.gameOver("win")
+          this.reset();
+        }
       } else {
         selection.classList.add("wrong");
         this.removeLife()
       }
-
-
-
-
     }
 
     removeLife() {
@@ -55,6 +70,7 @@ class Game {
         // call gameOver if no hearts on screen
         console.log("out of lives");
         this.gameOver("lose");
+        this.reset();
       }
 
         // get the img of the current li element based on the this.missed var
@@ -69,36 +85,25 @@ class Game {
     }
 
     checkForWin() {
-      // get all lis in active phrase
-       const li = this.activePhrase.phraseUL.querySelectorAll('.letter');
-       let arr = [li];
-
-       console.log(arr);
-       // loop over lis
-       for (var i = 0; i < li.length; i++) {
-         console.log(li[i].classList);
-         // check to see if the current li contains li class
-         if (li[i].classList.contains("hide")) {
-           arr.splice(li[i]);
-           console.log(arr);
-           if (arr.length === 0) {
-             this.gameOver("win")
-           }
-         }
-         return
-       }
+      const hiddenItems = document.getElementsByClassName('hide');
+      if (hiddenItems.length === 0) {
+        return true
+      } else {
+        return false
+      }
     }
 
     gameOver(result) {
       const startOverlay = document.getElementById("overlay");
       startOverlay.style.display = "block"
       const gameOverMessage = document.getElementById('game-over-message');
-      gameOverMessage.classList.add(result);
 
       if (result === "win") {
-        gameOverMessage.innerText = "Congratulations you've won!"
+        gameOverMessage.innerText = "Congratulations you've won!";
+        gameOverMessage.className = "win";
       } else {
-        gameOverMessage.innerText = "Oops you ran out of lives!"
+        gameOverMessage.innerText = "Oops you ran out of lives!";
+        gameOverMessage.className = "lose";
       }
     }
 }
