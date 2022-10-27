@@ -14,7 +14,7 @@ const keyboard = document.getElementById('qwerty');
 // add event listener to the keyboard
 keyboard.addEventListener("click", e => {
   // if the selected keyboard button is a button
-  if (e.target.tagName === "BUTTON") {
+  if (e.target.className === "key") {
     // set the button to a constant
     console.log(e.target.textContent);
     const buttonClicked = e.target;
