@@ -104,7 +104,7 @@ class Game {
         this.gameOver("lose");
         // call reset if no hearts on screen
         this.reset();
-      }
+      } else {
 
         // get the img of the current li element based on the this.missed var
         const img = heartScore[this.missed].getElementsByTagName('img')[0];
@@ -114,6 +114,7 @@ class Game {
           img.src = "images/lostheart.png";
           // increment this.missed
           this.missed++;
+        }
       }
     }
 
